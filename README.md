@@ -1,12 +1,5 @@
----
-title: An interactive atlas of genomic, proteomic, and metabolomic biomarkers indicates
-  that combinations of small numbers of proteins suffice to predict and diagnose complex
-  diseases
-output:
-  html_document:
-    df_print: paged
-date: "2023-10-11"
----
+# An interactive atlas of genomic, proteomic, and metabolomic biomarkers indicatesthat combinations of small numbers of proteins suffice to predict and diagnose complex diseases
+
 
 **S**wedish **D**igital **T**win **C**onsortium - **C**enter for **P**ersonalized **M**edicine
 
