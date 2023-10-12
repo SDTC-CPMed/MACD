@@ -364,7 +364,8 @@ suffice to predict and diagnose complex diseases</h1>
 <h2>General information</h2>
 <p>This is a github page dedicated to a manuscript TODO:link. The aim of
 the manuscript was to create an interactive multiomic atlas for complex
-diseases, which is available at TODO: link.</p>
+diseases (available at macd.shinyapps.io/ShinyApp/) and compare the
+predictive and diagnostic potential of different omics</p>
 </div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
@@ -381,6 +382,27 @@ macd.shinyapps.io/ShinyApp/. F) In summary, we present a head-to-head
 comparison of different omics layers, and an interactive atlas to derive
 context-dependent types and numbers of potential biomarkers for
 incidence and prevalence of the diseases</p>
+</div>
+<div id="accsess-to-the-data" class="section level2">
+<h2>Accsess to the data</h2>
+<p>Raw data from the UK Biobank are available for approved researchers
+through the UK Biobank data-access protocol.</p>
+</div>
+<div id="guide-for-the-code" class="section level2">
+<h2>Guide for the code</h2>
+<p>The code is divided into 3 main parts based on the coding language.
+The are firstly processed using the
+<em>Decodes2convert_UKBB_file.sh</em>. The proteomics and metabolomics
+data are further processed using the R script
+<em>Metabolomics_secondPhase_dataPreprocessing.R</em>, while genomics
+data are processed using <em>PRS_construction.sh</em>. The next step is
+to select the patients for different disease and their age/sex matched
+healthy controls using the <em>Patient_selection.R</em> script. The
+output of this file is directly used in the python files where the
+prediction pipeline (imputation, feature selection, training of the
+model) is run. The final results in the manuscript are created using
+<em>figures.R</em> file, and there is a specific folder that can be used
+to recreate the shiny application.</p>
 </div>
 </div>
 
