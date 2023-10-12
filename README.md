@@ -9,10 +9,10 @@ This is a github page dedicated to a manuscript TODO:link. The aim of the manusc
 
 ## Overview
 
-TODO include figure
+![](EMIDS_NewVer10102023_v11.png)
 
-**Overview figure of the study.** Figure 1. Overview of the study. A) Genomic, proteomic, and metabolomic data from patients with B) nine complex diseases from UKBB were divided by the disease status and C) analysed using cross-validation and holdout test dataset. D) A polygenic risk score was computed for genomic data while E) Feature selection was performed for proteomics and metabolomics. F) A logistic regression model with ridge penalty was trained and tested to create G) an interactive atlas that can be found at TODO: link. H) We present a head-to-head comparison of different omics, platform to analyse the results, and potential biomarkers for the incidence and prevalence of the diseases 
+**Overview figure of the study.** Figure 1. Overview of the study. A) Genomic, proteomic, and metabolomic data from patients with B) nine incident or prevalent complex diseases and age/sex matched controls were C1) analysed using cross-validation and holdout test datasets, and C2) A polygenic risk score was computed for genomic data, while D) feature selection was performed for proteomics and metabolomics. E1) A machine learning model was trained and tested to E2) construct an interactive atlas that can be found at macd.shinyapps.io/ShinyApp/. F) In summary, we present a head-to-head comparison of different omics layers, and an interactive atlas to derive context-dependent types and numbers of potential biomarkers for incidence and prevalence of the diseases   
 
 
-## Guide through the code
+
 
