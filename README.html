@@ -392,17 +392,19 @@ through the UK Biobank data-access protocol.</p>
 <h2>Guide for the code</h2>
 <p>The code is divided into 3 main parts based on the coding language.
 The are firstly processed using the
-<em>Decodes2convert_UKBB_file.sh</em>. The proteomics and metabolomics
+<em>Decodes2convert_UKBB_file.sh</em> and
+<em>Decode_UKBBdata_ICD9and10.py</em>. The proteomics and metabolomics
 data are further processed using the R script
-<em>Metabolomics_secondPhase_dataPreprocessing.R</em>, while genomics
-data are processed using <em>PRS_construction.sh</em>. The next step is
-to select the patients for different disease and their age/sex matched
-healthy controls using the <em>Patient_selection.R</em> script. The
-output of this file is directly used in the python files where the
-prediction pipeline (imputation, feature selection, training of the
-model) is run. The final results in the manuscript are created using
-<em>figures.R</em> file, and there is a specific folder that can be used
-to recreate the shiny application.</p>
+<em>UKBB_proteomics_dataPre_processing.py</em> and
+<em>Metabolomics_secondPhase_dataPreprocessing.R</em> respectively,
+while genomics data are processed using <em>PRS_construction.sh</em>.
+The next step is to select the patients for different disease and their
+age/sex matched healthy controls using the <em>Patient_selection.R</em>
+script. The output of this file is directly used in the python files
+<em>prediction_pipeline…</em> where the prediction pipeline (imputation,
+feature selection, training of the model) is run. The final results in
+the manuscript are created using <em>figures.R</em> file, and there is a
+specific folder that can be used to recreate the shiny application.</p>
 </div>
 </div>
 
