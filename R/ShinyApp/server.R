@@ -32,6 +32,40 @@ for(disease in c('CD', 'UC', 'RA', 'PSO', 'SLE', 'COPD', 'obesity', 'T2D', 'Athe
 server <- function(input, output) {
   # Define a reactive expression for the document term matrix
 
+  calcHeight <- reactive({
+    if(input$omics == 'genomics'){
+      
+      ShinyData_genomics_subset = ShinyData_genomics[ShinyData_genomics['Disease'] == input$disease,]
+      print(dim(ShinyData_genomics_subset))
+      
+      ShinyData_genomics_subset = ShinyData_genomics_subset[sort(abs(ShinyData_genomics_subset$effect_weight),decreasing=T,index.return=T)[[2]],]
+      #ShinyData_genomics_subset = ShinyData_genomics_subset[1:min(input$N, dim(ShinyData_genomics_subset)[1]) ,]
+      #print(dim(ShinyData_genomics_subset))
+      
+      PlotData = data.frame('Features' = ShinyData_genomics_subset$SNP,
+                            'Coef' = ShinyData_genomics_subset$effect_weight)
+    }
+    else{
+      SelectedRow = ShinyData['Disease'] == input$disease & ShinyData['N'] == input$N & ShinyData['Data'] == input$omics & ShinyData['Model'] == input$patients
+      
+      Features = ShinyData[SelectedRow, 'Features']
+      Coef = ShinyData[SelectedRow, 'Coef']
+      
+      # Remove brackets and single quotes and split the string
+      Features <- unlist(strsplit(Features, "', '"))
+      Features[1] <- gsub("\\['", "",Features[1])
+      Features[length(Features)] <- gsub("'\\]", "",Features[length(Features)])
+      
+      Coef <- unlist(strsplit(Coef, ", "))
+      Coef[1] <- gsub("\\[", "",Coef[1])
+      Coef[length(Coef)] <- gsub("\\]", "",Coef[length(Coef)])
+      Coef <- as.numeric(Coef)
+      
+      PlotData = data.frame('Features' = Features, 'Coef' = Coef)
+      
+    }
+    (dim(PlotData)[1] +1) *25
+  })
   
   output$plot1 <- renderPlot({
 
@@ -41,8 +75,8 @@ server <- function(input, output) {
       print(dim(ShinyData_genomics_subset))
       
       ShinyData_genomics_subset = ShinyData_genomics_subset[sort(abs(ShinyData_genomics_subset$effect_weight),decreasing=T,index.return=T)[[2]],]
-      ShinyData_genomics_subset = ShinyData_genomics_subset[1:min(input$N, dim(ShinyData_genomics_subset)[1]) ,]
-      print(dim(ShinyData_genomics_subset))
+      #ShinyData_genomics_subset = ShinyData_genomics_subset[1:min(input$N, dim(ShinyData_genomics_subset)[1]) ,]
+      #print(dim(ShinyData_genomics_subset))
       
       PlotData = data.frame('Features' = ShinyData_genomics_subset$SNP,
                             'Coef' = ShinyData_genomics_subset$effect_weight)
@@ -80,7 +114,8 @@ server <- function(input, output) {
       ) +
       ylab("") +
       xlab("Coefficient")
-  })
+  },
+  height = function(){calcHeight()})
   
   
   output$plot2 <- renderPlot({
@@ -118,5 +153,7 @@ server <- function(input, output) {
     basicplot
   })
 }
-
+  
+  
 server
+

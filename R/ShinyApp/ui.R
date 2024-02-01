@@ -25,17 +25,12 @@ ui <- fluidPage(
     ),
     
     
-    # Show Word Cloud
-    mainPanel(fluidRow(
-                splitLayout(cellWidths = c("50%", "50%"), plotOutput("plot1"), plotOutput("plot2"))
-              ),
-              fluidRow(column(12,
-                              helpText(HTML('The figure on the left shows the coefficients for each biomarker. Biomarkers with positive coefficients may have disease-inducing roles, while negative coefficient indicate protective roles. 
-                                        <br/>
-                                        <br/>
-                                       The figure on the right shows AUCs for different numbers of genomic, proteomic or metabolic potential biomarkers'))
-
-              ))
+    mainPanel(
+      tabsetPanel(
+        tabPanel("Feature Importance", plotOutput("plot1"),
+                 style = 'overflow-y: scroll'), 
+        tabPanel("AUC", plotOutput("plot2")) 
+      )
     )
 
   )
