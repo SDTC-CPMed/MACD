@@ -30,7 +30,10 @@ ui <- fluidPage(
         tabPanel("Feature Importance", plotOutput("plot1"),
                  style = 'overflow-y: scroll'), 
         tabPanel("AUC", plotOutput("plot2")) 
-      )
+      ),
+      fluidRow(column(12,
+                      verbatimTextOutput('text1')
+    ))
     )
 
   )

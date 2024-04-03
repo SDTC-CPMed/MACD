@@ -7,8 +7,8 @@ library(plotROC)
 
 
 
-ShinyData = read.csv('ShinyData_clinical_story.csv', row.names = 1)
-ShinyData_gen = read.csv('ShinyData_clinical_story_genomics.csv', row.names = 1)
+ShinyData = read.csv('ShinyData_clinical_story_evaluation.csv', row.names = 1)
+ShinyData_gen = read.csv('ShinyData_clinical_story_genomics_evaluation.csv', row.names = 1)
 ShinyData_gen[ShinyData_gen=="Obesity"]<- 'obesity'
 
 
@@ -152,8 +152,31 @@ server <- function(input, output) {
       style_roc(theme = theme_gray())
     basicplot
   })
+  
+  output$text1 <- renderText({
+    if(input$omics == 'genomics'){
+      SelectedRow = ShinyData_gen['Disease'] == input$disease & ShinyData_gen['Model'] == input$patients
+    }
+    else{
+      SelectedRow = ShinyData['Disease'] == input$disease & ShinyData['N'] == input$N & ShinyData['Data'] == input$omics & ShinyData['Model'] == input$patients
+    }
+    
+    auc = round(ShinyData[SelectedRow, 'AUC_test'], 3)
+    precision = round(ShinyData[SelectedRow, 'precision'], 3)
+    accuracy = round(ShinyData[SelectedRow, 'accuracy'], 3)
+    recall = round(ShinyData[SelectedRow, 'recall'], 3)
+    specificity = round(ShinyData[SelectedRow, 'specificity'], 3)
+    f1_score = round(ShinyData[SelectedRow, 'f1_score'], 3)
+
+    paste(' auc: ', auc, ' \n',
+          'precision: ', precision, ' \n',
+          'recall: ', recall, ' \n',
+          'accuracy: ', accuracy, ' \n',
+          'specificity: ', specificity, ' \n',
+          'f1_score: ', f1_score, ' \n')
+    
+  })
 }
   
-  
 server
-
+#shinyApp(ui, server)
